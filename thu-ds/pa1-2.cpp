@@ -1,7 +1,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
-
+#include <iostream>
 
 //light house, pass 95%
 
@@ -131,7 +131,8 @@ int main(){
 
 	mergesort(0, n-1);
 
-	printf("%ld\n", ans);
+	//printf("%ld\n", ans);
 
+	std::cout << ans << std::endl;
 
 }
