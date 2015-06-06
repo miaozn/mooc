@@ -1,5 +1,9 @@
 /*
 Broadcast
+Method : 
+select a group of villages with group size = 3
+if any 2 villages in the group are in 20km --> -1
+o.w. --> 1
 */
 #include <cstdio>
 #include <cstdlib>
