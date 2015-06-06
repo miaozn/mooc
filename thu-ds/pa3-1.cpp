@@ -28,7 +28,7 @@ struct fastio{
 
 int main(){
 	int n, m;
-	scanf("%d" &n);
+	scanf("%d", &n);
 	char edge[n+1][n+1];
 	memset(edge, 0, (n+1)*(n+1));
 
