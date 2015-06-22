@@ -120,6 +120,8 @@ void del( int *hp ){
 	int i = 1;
 	while(i < heap_sz){
 
+		if(nd[hp[i*2]] == 0 && nd[hp[i*2+1]] == 0) break;
+
 		if(cmp(nd[hp[i*2]], nd[hp[i*2+1]])){
 
 			if(cmp(nd[hp[i*2]], nd[hp[i]])){
