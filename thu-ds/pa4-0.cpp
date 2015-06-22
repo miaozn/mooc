@@ -51,8 +51,7 @@ compare:
 return true if nd1 is better than nd2. o.w., return false
 */
 bool cmp( Node* nd1, Node* nd2 ){
-	if(nd2 == 0) return true;
-	if(nd1 == 0) return false;
+
 	if( nd1->nice < nd2->nice ) return true;
 	if( nd1->nice > nd2->nice ) return false;
 	return strcmp(nd1->task, nd2->task) < 0; 
