@@ -51,7 +51,7 @@ public:
 
 	Heap();
 
-	bool cmp( int, int );
+	bool cmp( Node*, Node* );
 	void swap( int, int );
 	void insert( Node* );
 	void delMin();
