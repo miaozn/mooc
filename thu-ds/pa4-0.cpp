@@ -119,9 +119,38 @@ void del( int *hp ){
 	adjust to heap property
 	*/
 	int i = 1;
+	int lc, rc;
 	while(i < heap_sz){
 
-		break;
+		lc = i*2;
+		rc = lc + 1;
+		if( nd[hp[lc]] == 0 && nd[hp[rc]] == 0) break;
+
+		if( nd[hp[rc]] == 0){
+
+			if(cmp( nd[hp[lc]], nd[hp[i]] )){
+				swap(hp[lc], hp[i]);
+			}
+
+			break;
+		}
+
+
+		if(cmp( nd[hp[lc]], nd[hp[rc]] )){
+			if(cmp( nd[hp[lc]], nd[hp[i]] )){
+				swap(hp[lc], hp[i]);
+				i = lc;
+			}
+			else break;
+		}
+		else{
+			if(cmp( nd[hp[rc]], nd[hp[i]] )){
+				swap(hp[rc], hp[i]);
+				i = rc;
+			}
+			else break;
+
+		}
 
 	}
 
