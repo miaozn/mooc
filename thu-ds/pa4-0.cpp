@@ -60,8 +60,8 @@ public:
 
 Heap::Heap(){
 	size = 0;
-	int i;
-	for(i=0;i<4000001;i++) elm[i] = 0;
+	//int i;
+	//for(i=0;i<4000001;i++) elm[i] = 0;
 }
 
 /*
@@ -141,7 +141,7 @@ int main(){
 	scanf("%d %d", &n, &m);
 	if(n < 1 || m < 1) return 0;
 
-	int nc;
+	long long nc;
 	char tk[9];
 
 	Heap* hp = new Heap();
