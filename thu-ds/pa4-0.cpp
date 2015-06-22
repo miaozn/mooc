@@ -113,6 +113,7 @@ void del( int *hp ){
 	swap(hp[1], hp[heap_sz]);
 	heap_sz--;
 
+	heap_show(hp);
 	
 	/*
 	adjust to heap property
@@ -120,26 +121,7 @@ void del( int *hp ){
 	int i = 1;
 	while(i < heap_sz){
 
-		if(nd[hp[i*2]] == 0 && nd[hp[i*2+1]] == 0) break;
-
-		if(cmp(nd[hp[i*2]], nd[hp[i*2+1]])){
-
-			if(cmp(nd[hp[i*2]], nd[hp[i]])){
-				swap(hp[i*2], hp[i]);
-				i = i*2;
-			}
-			else break;
-		}
-		else{
-
-			if(cmp(nd[hp[i*2+1]], nd[hp[i]])){
-				swap(hp[i*2+1], hp[i]);
-				i = i*2+1;
-			}
-			else break;
-
-		}
-
+		break;
 
 	}
 
