@@ -112,8 +112,6 @@ void del( int *hp ){
 	int del_p = hp[1];
 	swap(hp[1], hp[heap_sz]);
 	heap_sz--;
-
-	heap_show(hp);
 	
 	/*
 	adjust to heap property
@@ -160,9 +158,12 @@ void del( int *hp ){
 	add back
 	*/
 	nd[del_p]->nice *= 2;
+	add(hp, del_p);
+	/*
 	if(nd[del_p]->nice < 4294967296){
 		add(hp, del_p);
 	}
+	*/
 
 	printf("%s\n", nd[del_p]->task);	
 }
