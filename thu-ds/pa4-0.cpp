@@ -144,7 +144,7 @@ int main(){
 	int nc;
 	char tk[9];
 
-	Heap hp = new Heap();
+	Heap* hp = new Heap();
 
 
 	while(n--){
