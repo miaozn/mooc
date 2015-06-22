@@ -43,129 +43,94 @@ Node::Node( long long n, char *c ){
 }
 
 
-Node* nd[4000001] = {0};
-int pos = 0;
+
+class Heap{
+public:
+	Node* elm[4000001];
+	int size;
+
+	Heap();
+
+	bool cmp( int, int );
+	void swap( int, int );
+	void insert( Node* );
+	void delMin();
+};
+
+
+Heap::Heap(){
+	size = 0;
+	int i;
+	for(i=0;i<4000001;i++) elm[i] = 0;
+}
 
 /*
-compare:
-return true if nd1 is better than nd2. o.w., return false
+return True if nd1 is better than nd2
 */
-bool cmp( Node* nd1, Node* nd2 ){
-
+bool Heap::cmp( Node* nd1, Node* nd2 ){
 	if( nd1->nice < nd2->nice ) return true;
 	if( nd1->nice > nd2->nice ) return false;
-	return strcmp(nd1->task, nd2->task) < 0; 
+
+	return strcmp( nd1->task, nd2->task ) < 0; 
 }
 
 
-
-
-int heap_sz = 0;
-
-void swap( int &a, int &b ){
-	int t = a;
-	a = b;
-	b = t;
+void Heap::swap( int a, int b ){
+	Node* t = elm[a];
+	elm[a] = elm[b];
+	elm[b] = t;
 }
 
-/*
-heap add
-*/
-void add( int *hp, int p ){
 
-	heap_sz++;
-	hp[heap_sz] = p;
+void Heap::insert( Node* nd ){
+	size++;
+	elm[size] = nd;
 
-	/*
-	adjust to heap property
-	*/
-	int i = heap_sz;
-	while( i > 1 && cmp(nd[ hp[i] ], nd[ hp[i/2] ]) ){
+	int i = size;
+	while( i > 1 && cmp( elm[i], elm[i/2] ) ){
+		swap(i, i/2);
+		i /= 2;
+	}
+}
 
-		swap(hp[i], hp[i/2]);
-		i = i/2;
 
+void Heap::delMin(){
+	Node* x = elm[1];
+
+	Node* y = elm[size--];
+
+	int i =1, ci = 2;
+	while( ci <= size ){
+
+		if(ci < size && cmp( elm[ci+1], elm[ci] )) ci++;
+
+		if(cmp( y, elm[ci])) break;
+
+		elm[i] = elm[ci];
+		i = ci;
+		ci *= 2;
 	}
 
-
-}
-
-
-void heap_show( int *hp ){
-	int i;
-	printf("heap : ");
-	for(i=1;i<=heap_sz+5;i++){
-		printf("%d ", hp[i]);
-	}
-
-	printf("\n");
-}
-
-/*
-heap remove
-*/
-void del( int *hp ){
-	
-	heap_show(hp);
-
-	int del_p = hp[1];
-	swap(hp[1], hp[heap_sz]);
-	heap_sz--;
-	
-	/*
-	adjust to heap property
-	*/
-	int i = 1;
-	int lc, rc;
-	while(i < heap_sz){
-
-		lc = i*2;
-		rc = lc + 1;
-		if( nd[hp[lc]] == 0 && nd[hp[rc]] == 0) break;
-
-		if( nd[hp[rc]] == 0){
-
-			if(cmp( nd[hp[lc]], nd[hp[i]] )){
-				swap(hp[lc], hp[i]);
-			}
-
-			break;
-		}
-
-
-		if(cmp( nd[hp[lc]], nd[hp[rc]] )){
-			if(cmp( nd[hp[lc]], nd[hp[i]] )){
-				swap(hp[lc], hp[i]);
-				i = lc;
-			}
-			else break;
-		}
-		else{
-			if(cmp( nd[hp[rc]], nd[hp[i]] )){
-				swap(hp[rc], hp[i]);
-				i = rc;
-			}
-			else break;
-
-		}
-
-	}
+	elm[i] = y;
 
 
 
 	/*
-	add back
+	add back x?
 	*/
-	nd[del_p]->nice *= 2;
-	add(hp, del_p);
-	/*
-	if(nd[del_p]->nice < 4294967296){
-		add(hp, del_p);
+	x->nice *= 2;
+	if( x->nice < 4294967296 ){
+		insert(x);
 	}
-	*/
+	else{
+		delete x;
+	}
 
-	printf("%s\n", nd[del_p]->task);	
+	printf("%s\n", x->task );
 }
+
+
+
 
 
 
@@ -178,18 +143,16 @@ int main(){
 
 	int nc;
 	char tk[9];
-	int heap[n + 1];
+
+	Heap hp = new Heap();
+
 
 	while(n--){
 
 		memset(tk, 0, 9);
 
 		scanf("%d %s", &nc, tk);
-		nd[pos] = new Node(nc, tk);
-
-		add(heap, pos);
-
-		pos++;
+		hp->insert( new Node(nc, tk) );
 	}
 
 
@@ -197,9 +160,9 @@ int main(){
 	/*
 	output
 	*/
-	while(m-- && heap_sz > 0){
+	while(m-- && hp->size > 0){
 
-		del(heap);
+		hp->delMin();
 
 	}
 
