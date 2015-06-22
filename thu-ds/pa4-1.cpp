@@ -68,7 +68,7 @@ bool cycle(){
 
 int main(){
 	
-	while( scanf("%s %s\n", c1, c2) ){
+	while( scanf("%s %s\n", c1, c2) != EOF ){
 		if(cycle()){
 			printf("YES\n");
 		}
