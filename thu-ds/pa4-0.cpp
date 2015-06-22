@@ -14,7 +14,7 @@ need to optimize
 /*
 io helper
 */
-const int SZ = 1 << 23;
+const int SZ = 1 << 25;
 struct fastio{
 	char inbuf[SZ];
 	char outbuf[SZ];
@@ -58,14 +58,15 @@ public:
 	void swap( int, int );
 	void insert( Node* );
 	void delMin();
+
+
 };
 
 
 Heap::Heap( int n ){
 	size = 0;
-	elm = (Node **) malloc(sizeof(Node *) * (n+2));
-	//int i;
-	//for(i=0;i<4000001;i++) elm[i] = 0;
+	elm = (Node **) malloc(sizeof(Node *) * (n+1));
+
 }
 
 /*
@@ -87,14 +88,16 @@ void Heap::swap( int a, int b ){
 
 
 void Heap::insert( Node* nd ){
-	size++;
-	elm[size] = nd;
+	
+	int i = ++size;
 
-	int i = size;
-	while( i > 1 && cmp( elm[i], elm[i/2] ) ){
-		swap(i, i/2);
+	while( i != 1 && cmp( elm[i], elm[i/2] ) ){
+		
+		elm[i] = elm[i/2];
 		i /= 2;
 	}
+
+	elm[i] = nd;
 }
 
 
@@ -126,9 +129,8 @@ void Heap::delMin(){
 	if( x->nice < 4294967296 ){
 		insert(x);
 	}
-	else{
-		delete x;
-	}
+
+
 
 	printf("%s\n", x->task );
 }
