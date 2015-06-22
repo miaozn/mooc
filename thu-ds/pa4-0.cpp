@@ -94,7 +94,7 @@ void add( int *hp, int p ){
 void heap_show( int *hp ){
 	int i;
 	printf("heap : ");
-	for(i=1;i<=heap_sz;i++){
+	for(i=1;i<=heap_sz+5;i++){
 		printf("%d ", hp[i]);
 	}
 
