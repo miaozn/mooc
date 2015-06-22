@@ -88,7 +88,9 @@ void Heap::swap( int a, int b ){
 
 
 void Heap::insert( Node* nd ){
-	
+		
+	printf("1\n");
+
 	int i = ++size;
 
 	while( i != 1 && cmp( elm[i], elm[i/2] ) ){
@@ -98,6 +100,7 @@ void Heap::insert( Node* nd ){
 	}
 
 	elm[i] = nd;
+	printf("2\n");
 }
 
 
