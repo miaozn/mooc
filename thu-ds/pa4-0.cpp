@@ -1,6 +1,6 @@
 /*
 Schedule
-pass 60%
+pass 80%
 TLE
 need to optimize
 */
@@ -120,9 +120,8 @@ void Heap::delMin(){
 	/*
 	add back x?
 	*/
-	long long prev = x->nice;
-	x->nice = prev * 2;
-	if( prev < x->nice ){
+	x->nice = x->nice << 1;
+	if( x->nice < 4294967296 ){
 		insert(x);
 	}
 
