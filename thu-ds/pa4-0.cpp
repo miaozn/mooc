@@ -14,7 +14,7 @@ need to optimize
 /*
 io helper
 */
-const int SZ = 1 << 25;
+const int SZ = 1 << 23;
 struct fastio{
 	char inbuf[SZ];
 	char outbuf[SZ];
@@ -65,7 +65,7 @@ public:
 
 Heap::Heap( int n ){
 	size = 0;
-	elm = (Node **) malloc(sizeof(Node *) * (n+1));
+	elm = (Node **) malloc(sizeof(Node *) * (n+2));
 
 }
 
@@ -93,7 +93,7 @@ void Heap::insert( Node* nd ){
 
 	int i = ++size;
 
-	while( i != 1 && cmp( elm[i], elm[i/2] ) ){
+	while( i != 1 && cmp( nd, elm[i/2] ) ){
 		
 		elm[i] = elm[i/2];
 		i /= 2;
