@@ -1,5 +1,7 @@
 /*
 Cycle
+naive Brute Force.
+pass 100%
 */
 #include <cstdio>
 #include <cstdlib>
