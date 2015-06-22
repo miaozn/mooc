@@ -14,7 +14,7 @@ need to optimize
 /*
 io helper
 */
-const int SZ = 1 << 20;
+const int SZ = 1 << 23;
 struct fastio{
 	char inbuf[SZ];
 	char outbuf[SZ];
@@ -49,10 +49,10 @@ Node::Node( long long n, char *c ){
 
 class Heap{
 public:
-	Node* elm[4000001];
+	Node** elm;
 	int size;
 
-	Heap();
+	Heap( int );
 
 	bool cmp( Node*, Node* );
 	void swap( int, int );
@@ -61,8 +61,9 @@ public:
 };
 
 
-Heap::Heap(){
+Heap::Heap( int n ){
 	size = 0;
+	elm = (Node **) malloc(sizeof(Node *) * (n+2));
 	//int i;
 	//for(i=0;i<4000001;i++) elm[i] = 0;
 }
@@ -147,7 +148,7 @@ int main(){
 	long long nc;
 	char tk[9];
 
-	Heap* hp = new Heap();
+	Heap* hp = new Heap(n);
 
 
 	while(n--){
