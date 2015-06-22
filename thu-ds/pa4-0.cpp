@@ -1,5 +1,8 @@
 /*
 Schedule
+pass 60%
+TLE
+need to optimize
 */
 #include <cstdio>
 #include <cstdlib>
@@ -151,7 +154,7 @@ int main(){
 
 		memset(tk, 0, 9);
 
-		scanf("%d %s", &nc, tk);
+		scanf("%lld %s", &nc, tk);
 		hp->insert( new Node(nc, tk) );
 	}
 
