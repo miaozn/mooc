@@ -14,7 +14,7 @@ need to optimize
 /*
 io helper
 */
-const int SZ = 1 << 26;
+const int SZ = 1 << 25;
 struct fastio{
 	char inbuf[SZ];
 	char outbuf[SZ];
@@ -120,8 +120,9 @@ void Heap::delMin(){
 	/*
 	add back x?
 	*/
-	x->nice = x->nice << 1;
-	if( x->nice < 4294967296 ){
+	long long prev = x->nice;
+	x->nice = prev * 2;
+	if( prev < x->nice ){
 		insert(x);
 	}
 
