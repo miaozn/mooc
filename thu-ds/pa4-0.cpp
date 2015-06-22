@@ -14,7 +14,7 @@ need to optimize
 /*
 io helper
 */
-const int SZ = 1 << 23;
+const int SZ = 1 << 26;
 struct fastio{
 	char inbuf[SZ];
 	char outbuf[SZ];
@@ -55,7 +55,6 @@ public:
 	Heap( int );
 
 	bool cmp( Node*, Node* );
-	void swap( int, int );
 	void insert( Node* );
 	void delMin();
 
@@ -80,27 +79,20 @@ bool Heap::cmp( Node* nd1, Node* nd2 ){
 }
 
 
-void Heap::swap( int a, int b ){
-	Node* t = elm[a];
-	elm[a] = elm[b];
-	elm[b] = t;
-}
-
-
 void Heap::insert( Node* nd ){
 		
-	printf("1\n");
+	//printf("1\n");
 
 	int i = ++size;
 
-	while( i != 1 && cmp( nd, elm[i/2] ) ){
+	while( i != 1 && cmp( nd, elm[i >> 1] ) ){
 		
-		elm[i] = elm[i/2];
-		i /= 2;
+		elm[i] = elm[i >> 1];
+		i = i >> 1;
 	}
 
 	elm[i] = nd;
-	printf("2\n");
+	//printf("2\n");
 }
 
 
@@ -118,7 +110,7 @@ void Heap::delMin(){
 
 		elm[i] = elm[ci];
 		i = ci;
-		ci *= 2;
+		ci = ci << 1;
 	}
 
 	elm[i] = y;
@@ -128,7 +120,7 @@ void Heap::delMin(){
 	/*
 	add back x?
 	*/
-	x->nice *= 2;
+	x->nice = x->nice << 1;
 	if( x->nice < 4294967296 ){
 		insert(x);
 	}
