@@ -62,9 +62,10 @@ void put( Node* nd ){
 compare two nodes
 */
 bool cmp( Node* nd1, Node* nd2 ){
-	if (nd1->nice == nd2->nice) return strcmp( nd1->task, nd2->task ) < 0;
-	
-	return nd1->nice < nd2->nice;
+	if( nd1->nice < nd2->nice ) return true;
+	if( nd1->nice > nd2->nice ) return false;
+
+	return strcmp( nd1->task, nd2->task ) < 0;
 }
 
 
@@ -110,6 +111,11 @@ void insert( Node* nd ){
 }
 
 
+char res[10000] = {0};
+int num = 0;
+int pos = 0;
+
+
 void delMin(){
 	Node* x = elm[1];
 
@@ -142,7 +148,27 @@ void delMin(){
 
 
 
-	printf("%s\n", x->task );	
+	//printf("%s\n", x->task );	
+
+	if(num == 1000){
+		printf("%s\n", res);
+	
+		memset(res, 0, 10000);
+		num = 0;
+		pos = 0;
+	}
+	else{
+
+		int ln = strlen(x->task);
+		x->task[ln] = '\n';
+		x->task[ln+1] = 0;
+		ln++;
+		strcpy(res + pos, x->task);
+		num++;
+		pos += ln;
+
+	}
+
 }
 
 
@@ -172,6 +198,7 @@ int main(){
 		delMin();
 	}
 
+	if(num < 1000) printf("%s\n", res);
 
 	return 0;
 }
