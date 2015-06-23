@@ -33,14 +33,14 @@ Heap element
 */
 class Node{
 public:
-	long long nice;
 	char task[9];
+	unsigned int nice;
 
-	Node( long long, char* );	
+	Node( unsigned int, char* );	
 
 };
 
-Node::Node( long long n, char *c ){
+Node::Node( unsigned int n, char *c ){
 	nice = n;
 	strcpy(task, c);
 }
@@ -120,8 +120,9 @@ void Heap::delMin(){
 	/*
 	add back x?
 	*/
-	x->nice = x->nice << 1;
-	if( x->nice < 4294967296 ){
+	unsigned int t = x->nice;
+	x->nice = t + t;
+	if( x->nice > t ){
 		insert(x);
 	}
 
@@ -142,7 +143,7 @@ int main(){
 	scanf("%d %d", &n, &m);
 	if(n < 1 || m < 1) return 0;
 
-	long long nc;
+	unsigned int nc;
 	char tk[9];
 
 	Heap* hp = new Heap(n);
@@ -152,7 +153,7 @@ int main(){
 
 		memset(tk, 0, 9);
 
-		scanf("%lld %s", &nc, tk);
+		scanf("%u %s", &nc, tk);
 		hp->insert( new Node(nc, tk) );
 	}
 
