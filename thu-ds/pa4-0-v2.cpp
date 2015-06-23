@@ -169,7 +169,7 @@ int main(){
 
 	build();
 
-	while(m-- && hp->size > 0){
+	while(m-- && size > 0){
 		delMin();
 	}
 
