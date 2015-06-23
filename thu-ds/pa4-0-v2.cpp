@@ -12,7 +12,7 @@ un-oop
 /*
 io helper
 */
-const int SZ = 1 << 24;
+const int SZ = 1 << 25;
 struct fastio{
 	char inbuf[SZ];
 	char outbuf[SZ];
@@ -47,7 +47,7 @@ Node::Node( unsigned int n, char *c ){
 
 
 
-Node* elm[4000002] = {0};
+Node* elm[4000002];
 int size = 0;
 
 
@@ -65,7 +65,7 @@ bool cmp( Node* nd1, Node* nd2 ){
 	if( nd1->nice < nd2->nice ) return true;
 	if( nd1->nice > nd2->nice ) return false;
 
-	return strcmp( nd1->task, nd2->task );
+	return strcmp( nd1->task, nd2->task ) < 0;
 }
 
 
@@ -159,7 +159,7 @@ int main(){
 
 	while(n--){
 
-		memset(tk, 0, 9);
+		//memset(tk, 0, 9);
 
 		scanf("%u %s", &nc, tk);
 
