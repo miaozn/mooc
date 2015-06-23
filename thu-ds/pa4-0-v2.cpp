@@ -62,10 +62,9 @@ void put( Node* nd ){
 compare two nodes
 */
 bool cmp( Node* nd1, Node* nd2 ){
-	if( nd1->nice < nd2->nice ) return true;
-	if( nd1->nice > nd2->nice ) return false;
-
-	return strcmp( nd1->task, nd2->task ) < 0;
+	if (nd1->nice == nd2->nice) return strcmp( nd1->task, nd2->task ) < 0;
+	
+	return nd1->nice < nd2->nice;
 }
 
 
