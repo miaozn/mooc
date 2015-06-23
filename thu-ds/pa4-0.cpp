@@ -59,6 +59,14 @@ public:
 	void delMin();
 
 
+	/*
+	floyd heap construction
+	O(n)
+	*/
+	void put( Node* );
+	void build();
+
+
 };
 
 
@@ -67,6 +75,36 @@ Heap::Heap( int n ){
 	elm = (Node **) malloc(sizeof(Node *) * (n+2));
 
 }
+
+
+void Heap::put( Node* nd ){
+	size++;
+	elm[size] = nd;
+}
+
+
+void Heap::build(){
+	int i;
+
+	for(i=size/2; i>=1; i--){
+		Node* y = elm[i];
+		int ci = i + i;
+
+		while( ci <= size ){
+			if( ci < size && cmp( elm[ci+1], elm[ci] ) ){
+				ci++;
+			}
+			if( cmp(y, elm[ci]) ) break;
+
+			elm[ci/2] = elm[ci];
+
+			ci = ci + ci;
+			elm[ci/2] = y;
+		}
+	}
+
+}
+
 
 /*
 return True if nd1 is better than nd2
@@ -154,8 +192,11 @@ int main(){
 		memset(tk, 0, 9);
 
 		scanf("%u %s", &nc, tk);
-		hp->insert( new Node(nc, tk) );
+		hp->put( new Node(nc, tk) );
 	}
+
+
+	hp->build();
 
 
 
