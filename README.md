@@ -1,2 +1,2 @@
 # Practice
-my solutions to some algorithm problems.
+solutions to some algorithm problems.
