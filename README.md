@@ -10,4 +10,9 @@ Here is a list of the problems from this course:
 - [8 Puzzle](http://htmlpreview.github.com/?https://github.com/miaozn/MOOC/blob/master/princeton-algs-part-1/assignments/8puzzle.html)
 - [Kd Tree](http://htmlpreview.github.com/?https://github.com/miaozn/MOOC/blob/master/princeton-algs-part-1/assignments/kdtree.html)  
     
-It is best to use Java to solve those problems since the provided testing utils are in Java. My solutions are [here](https://github.com/miaozn/MOOC/tree/master/princeton-algs-part-1/solutions)  
+It is best to use Java to solve those problems since the provided testing utils are in Java.   
+My solutions are [here](https://github.com/miaozn/MOOC/tree/master/princeton-algs-part-1/solutions)    
+
+## Tsinghua -- Data Structures
+Course materials are available on [Edx](https://www.edx.org/course/subject/computer-science)  
+TBD..
