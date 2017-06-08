@@ -1,4 +1,6 @@
-# MOOC Problems
+# MOOC Problems  
+![](/res/mooc.jpg)    
+
 This repo is the place where I put some problems from MOOC (Coursera/ Edx) and also my solutions.  
 
 ## Princeton - Algorithms - Part 1
