@@ -1,5 +1,5 @@
 # MOOC Problems  
-![](/res/mooc.jpg)    
+![](/z/mooc.jpg)    
 
 This repo is the place where I put some problems from MOOC (Coursera/ Edx) and also my solutions.  
 
